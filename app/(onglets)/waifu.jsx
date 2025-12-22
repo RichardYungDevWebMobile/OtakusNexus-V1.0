@@ -1,0 +1,1 @@
+// app/(onglets)/waifu.jsx

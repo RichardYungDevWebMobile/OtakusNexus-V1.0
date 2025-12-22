@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Otakus Nexus",
+    "slug": "otakus-nexus",
+    "version": "0.1.0",
+    "sdkVersion": "49.0.0",
+    "platforms": ["ios","android","web"],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}

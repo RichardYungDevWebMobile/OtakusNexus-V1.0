@@ -1,0 +1,1 @@
+// app/(onglets)/ai.jsx

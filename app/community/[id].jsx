@@ -1,0 +1,1 @@
+// app/community/[id].jsx

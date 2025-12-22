@@ -1,0 +1,1 @@
+// app/(onglets)/Communities.jsx

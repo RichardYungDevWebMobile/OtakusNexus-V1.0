@@ -1,0 +1,1 @@
+// app/(authentifié)/register.jsx
