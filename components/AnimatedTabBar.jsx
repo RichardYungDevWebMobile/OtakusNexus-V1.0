@@ -1,32 +1,74 @@
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// Very small stub of an animated tab bar. Replace animations with Reanimated or Animated API.
 export default function AnimatedTabBar({ state, descriptors, navigation }) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={{ flexDirection: 'row', height: 56, borderTopWidth: 1, borderColor: '#eee' }}>
+    <View style={[styles.container, { paddingBottom: Math.max(insets.bottom, 8) }]}>
       {state.routes.map((route, index) => {
-        const descriptor = descriptors[route.key];
-        const label = descriptor.options.tabBarLabel ?? descriptor.options.title ?? route.name;
+        const { options } = descriptors[route.key] || {};
+        const label = options?.title ?? route.name;
         const isFocused = state.index === index;
 
         const onPress = () => {
-          const event = navigation.emit({ type: 'tabPress', target: route.key });
-          if (!isFocused && !event.defaultPrevented) navigation.navigate(route.name);
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
         };
 
         return (
           <TouchableOpacity
             key={route.key}
             accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
             onPress={onPress}
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={styles.tab}
+            activeOpacity={0.85}
           >
-            <Text style={{ color: isFocused ? '#6200ee' : '#222' }}>{label}</Text>
+            <View style={[styles.iconWrapper, isFocused && styles.activeIcon]}>
+              <Text style={[styles.iconText, isFocused && styles.activeText]}>
+                {String(label).charAt(0)}
+              </Text>
+            </View>
+            <Text style={[styles.label, isFocused && styles.activeText]} numberOfLines={1}>
+              {label}
+            </Text>
           </TouchableOpacity>
         );
       })}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderTopColor: '#eef2ff',
+    borderTopWidth: 1,
+    paddingTop: 8,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  tab: { alignItems: 'center', width: 90 },
+  iconWrapper: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#f3f6ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+  },
+  activeIcon: { backgroundColor: '#5B7CFA' },
+  iconText: { color: '#6b7280', fontWeight: '700' },
+  activeText: { color: '#fff' },
+  label: { fontSize: 11, color: '#6b7280' },
+});
