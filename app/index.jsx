@@ -30,4 +30,3 @@
                                                        // Authentifié → redirection vers l'onglet principal
                                                          return <Redirect href="/(tabs)/nexus" />;
                                                          }
- */
