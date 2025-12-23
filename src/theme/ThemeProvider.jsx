@@ -1,28 +1,13 @@
 import React, { createContext } from 'react';
 import { StatusBar } from 'react-native';
+import { lightTheme } from './tokens';
 
-export const ThemeContext = createContext({
-  colors: {
-    background: '#fff',
-    text: '#111',
-    primary: '#6C5CE7',
-    card: '#F7F7FC',
-  },
-});
+export const ThemeContext = createContext(lightTheme);
 
 export default function ThemeProvider({ children }) {
-  const theme = {
-    colors: {
-      background: '#fff',
-      text: '#111',
-      primary: '#6C5CE7',
-      card: '#F7F7FC',
-    },
-  };
-
   return (
-    <ThemeContext.Provider value={theme}>
-      <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
+    <ThemeContext.Provider value={lightTheme}>
+      <StatusBar barStyle="dark-content" />
       {children}
     </ThemeContext.Provider>
   );
