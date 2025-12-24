@@ -4,7 +4,11 @@
     "slug": "otakus-nexus",
     "version": "0.1.0",
     "sdkVersion": "49.0.0",
-    "platforms": ["ios","android","web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -15,6 +19,12 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "10f2d4f3-925f-4d12-8a01-2ecc3e8fa493"
+      }
+    },
+    "owner": "richardyungdev"
   }
 }
