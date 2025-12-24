@@ -35,4 +35,4 @@ jobs:
       - name: Build Android APK (Expo Cloud)
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build -p android --profile preview
+        run: eas build -p android --profile preview --non-interactive
